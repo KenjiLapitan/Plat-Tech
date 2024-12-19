@@ -15,7 +15,7 @@ body {
 
 h1 {
     font-size: 2.5rem;
-    color: black;
+    color: #333;
 }
 
 #jokeContainer {
@@ -62,4 +62,18 @@ button:active {
 
 button:focus {
     outline: none;
+}
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    button {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
+    #jokeContainer {
+        padding: 10px;
+    }
 }
