@@ -3,9 +3,9 @@
     "short_name": "Jokes",
     "icons": [
       {
-        "src": ".../images/ha.jpg",
+        "src": "images/hu.jpg",
         "sizes": "360x360",
-        "type": "image/png"
+        "type": "image/jpg"
       }
     ],
     "start_url": "/index.html",
