@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="x-icon" href="images/ha.jpg">
+    <title>API ACTIVITY</title>
+
+    <style>
+        .jokePunchline{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Jokes</h1>
+
+    <div id="jokeContainer">
+        <p id="jokeQuestion">Loading Question....</p>
+        <p id="jokePunchline" class="jokePunchline"></p>
+    </div>
+
+    <button id="show">Punchline</button>
+    <button id="Next">Next</button>
+
+    <script>
+        let jokeQuestion = document.getElementById('jokeQuestion');
+        let jokePunchline = document.getElementById('jokePunchline');
+        let show = document.getElementById('show');
+        let Next = document.getElementById('Next');
+
+        function fetchjoke(){
+            fetch('https://official-joke-api.appspot.com/random_joke')
+            .then(Response => Response.json())
+            .then(data =>{
+                jokeQuestion.textContent = data.setup;
+                jokePunchline.style.display = 'none';
+                jokePunchline.textContent = data.punchline;
+            })
+            .catch(error => console.log("something went wrong!", error));
+        }
+        fetchjoke();
+
+        show.addEventListener("click", () => {
+            jokePunchline.style.display= 'block';
+        });
+
+        Next.addEventListener('click', () => {
+            fetchjoke();
+        });
+
+        if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+     navigator.serviceWorker.register('../sw.js').then( () => {
+      console.log('Service Worker Registered')
+     })
+   })
+  }
+    </script>
+</body>
+</html>
